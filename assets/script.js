@@ -1,10 +1,15 @@
 // Variables
 var timer;
 var score = 0;
+var currentQIndex = 0;
+var time = questions.length;
 var displayTime = document.getElementById('timer');
-var questionEl = document.getElementById('questions');
+var questionEl = document.getElementById('questionsEl');
 var startButton = document.getElementById('start');
 var submitButton = document.getElementById('submit');
+var choicesEl = document.getElementById('choices');
+var initialsEl = document.getElementById('initials')
+
 
 // Questions
 
@@ -62,9 +67,22 @@ var questions = [
 ];
 
 // Game function
+function start() {
+  var startQuiz = document.getElementById('start-quiz');
+  startQuiz.setAttribute('class', 'hide');
+  questionEl.removeAttribute('class');
+  timer = setInterval(1000);
+  showQ();
+}
 
 // Questions function
+function showQ() {
+  var currentQ = questions[currentQIndex];
+  var askQ = document.getElementById('question');
+  askQ.textContent = currentQ.question;
+}
 
 // Final score function
+
 
 // Save score
