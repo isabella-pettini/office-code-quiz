@@ -1,15 +1,35 @@
-AS A coding boot camp student
-I WANT to take a timed quiz on JavaScript fundamentals that stores high scores
-SO THAT I can gauge my progress compared to my peers
+# The Office Quiz Game
 
-GIVEN I am taking a code quiz
-WHEN I click the start button
-THEN a timer starts and I am presented with a question
-WHEN I answer a question
-THEN I am presented with another question
-WHEN I answer a question incorrectly
-THEN time is subtracted from the clock
-WHEN all questions are answered or the timer reaches 0
-THEN the game is over
-WHEN the game is over
-THEN I can save my initials and my score
+## Description
+Test your knowledge of the Office with this fun quiz! Answer a question wrong and time will be subtracted from the clock.
+
+## Table Of Contents 
+- [Installation](#installation)
+- [Usage](#usage)
+- [License](#license)
+- [Contributing](#contributing)
+- [Tests](#tests)
+- [Questions](#questions)
+
+## Installation
+[Deployed site]()
+
+## Usage
+See how well you can do against the timer, if you do well you will be promoted to head Sales person, if you fail, you'll be sitting in the annex with Toby. 
+
+## License
+This project is covered under the MIT license. Please refer to this link to read the license, permissions, conditions and limitations.
+[License: MIT](https://choosealicense.com/licenses/mit/)
+
+## Contributing
+N/A
+
+## Tests
+N/A
+
+## Questions
+Please reach me by GitHub or Email below with any additional questions about this project:
+
+GitHub: https://github.com/isabella-pettini
+
+Email:  isabellapierce93@gmail.com
