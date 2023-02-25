@@ -2,7 +2,7 @@
 var timer;
 var score = 0;
 var currentQIndex = 0;
-var time = questions.length;
+var time = questions;
 var displayTime = document.getElementById('timer');
 var questionEl = document.getElementById('questionsEl');
 var startButton = document.getElementById('start');
@@ -72,7 +72,7 @@ function start() {
   startQuiz.setAttribute('class', 'hide');
   questionEl.removeAttribute('class');
   timer = setInterval(countDown, 1000);
-  displayTime.textContent = time;
+  // displayTime.textContent = time;
   showQ();
 }
 
@@ -96,7 +96,7 @@ function showQ() {
 // timer countdown function
 function countDown() {
   time--;
-  displayTime.textContent = time;
+  // displayTime.textContent = time;
   if (time = 0) {
     endQuiz();
   }
@@ -114,15 +114,28 @@ function endQuiz() {
 
 // Show high score score function - should go to scores.html page
 function highScores() {
+  var userScores = JSON.parse(window.localStorage.getItem('highscores')) || [];
+  userScores.sort(function (a, b) {
+    return b.score - a.score;
+  });
 
+  for (var i = 0; i < userScores.length; i++) {
+    var olTag = document.createElement('ol');
+    olTag.textContent = userScores[i].initials + userScores[i].score;
+    var liEl = document.getElementById('highscores');
+    liEl.appendChild(olTag);
+  }
 }
 
 // Save score
 
 function saveScore () {
-  
+
 }
 
 // start button
+startButton.onclick = start
 // answers button
 // initials button
+
+highScores();
