@@ -71,18 +71,47 @@ function start() {
   var startQuiz = document.getElementById('start-quiz');
   startQuiz.setAttribute('class', 'hide');
   questionEl.removeAttribute('class');
-  timer = setInterval(1000);
+  timer = setInterval(countDown, 1000);
+  displayTime.textContent = time;
   showQ();
 }
 
 // Questions function
 function showQ() {
-  var currentQ = questions[currentQIndex];
+  var currentQ = questions[currentQIndex];  
   var askQ = document.getElementById('question');
   askQ.textContent = currentQ.question;
+  choicesEl.innerHTML = '';
+  // for loop to go over answer choices
+  for (var i = 0; i  < currentQ.choices.length; i++) {
+    var answer = currentQ.choices[i];
+    var answerBtn = document.createElement('button');
+    answerBtn.setAttribute('class', 'choice');
+    answerBtn.setAttribute('class', answer);
+    answerBtn.textContent = i + 1 + '. ' + answer;
+    choicesEl.appendChild(answerBtn);
+  }
 }
 
-// Final score function
+// timer countdown function
+function countDown() {
+  time--;
+  displayTime.textContent = time;
+  if (time = 0) {
+    endQuiz();
+  }
+}
+
+// end quiz function
+function endQuiz() {
+
+}
+
+// Show high score score function - should go to scores.html page
 
 
 // Save score
+
+// start button
+// answers button
+// initials button
