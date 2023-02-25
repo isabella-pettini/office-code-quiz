@@ -104,13 +104,24 @@ function countDown() {
 
 // end quiz function
 function endQuiz() {
-
+  clearInterval(timer);
+  var endGame = document.getElementById('end-screen');
+  endGame.removeAttribute('class');
+  var finalScore = document.getElementById('final-score');
+  finalScore.textContent = time;
+  questionEl.setAttribute('class', 'hide');
 }
 
 // Show high score score function - should go to scores.html page
+function highScores() {
 
+}
 
 // Save score
+
+function saveScore () {
+  
+}
 
 // start button
 // answers button
