@@ -17,53 +17,53 @@ var feedbackEl = document.getElementById('feedback')
 var questions = [
   {
     title: "What was the name of Michael Scott's Action Film?",
-    choices: ["A: Scott's Tots", "B: Threat Level Midnight", "C: Toby's Going Away", "D: That's What She Said"],
-    correct: "B: Threat Level Midnight",
+    choices: ["Scott's Tots", "Threat Level Midnight", "Toby's Going Away", "That's What She Said"],
+    answer: "Threat Level Midnight",
   },
   {
     title: "Question, what kind of bear is best?",
-    choices: ["A: Brown", "B: Polar", "C: Black", "D: Grizzly"],
-    correct: "C: Black",
+    choices: ["Brown", "Polar", "Black", "Grizzly"],
+    answer: "Black",
   },
   {
     title: "Who gives Dwight a bobble-head of himself for Valentines Day?",
-    choices: ["A: Jim", "B: Michael", "C: Creed", "D: Angela"],
-    correct: "D: Angela",
+    choices: ["Jim", "Michael", "Creed", "Angela"],
+    answer: "Angela",
   },
   {
     title: "How did Michael hurt his foot?",
-    choices: ["A: On a George Foreman Grill", "B: A bat bit him", "C: Toby", "D: Parkour"],
-    correct: "A: On a George Foreman Grill",
+    choices: ["On a George Foreman Grill", "A bat bit him", "Toby", "Parkour"],
+    answer: "On a George Foreman Grill",
   },
   {
     title: "What is the name of the competing company Michael creates after quitting Dunder Mifflin?",
-    choices: ["A: Wonder-Paper", "B: Hammermill", "C: The Michael Scott Paper Company", "D: Scrantonicity"],
-    correct: "C: The Michael Scott Paper Company",
+    choices: ["Wonder-Paper", "Hammermill", "The Michael Scott Paper Company", "Scrantonicity"],
+    answer: "The Michael Scott Paper Company",
   },
   {
     title: "What is the name of the club Pam, Oscar and Toby create?",
-    choices: ["A: The Great Things Club", "B: The Finer Things Club", "C: The Dunder Mifflin Club", "D: The Office Pals"],
-    correct: "B: The Finer Things Club",
+    choices: ["The Great Things Club", "The Finer Things Club", "The Dunder Mifflin Club", "The Office Pals"],
+    answer: "The Finer Things Club",
   },
   {
     title: "Erin rated Holly a _____ out of 40.",
-    choices: ["A: 16", "B: 20", "C: 8", "D: 23"],
-    correct: "A: 16",
+    choices: ["16", "20", "8", "23"],
+    answer: "16",
   },
   {
     title: "What are the names of Jim and Pam's children?",
-    choices: ["A: Peepee and George", "B: Kelly and Oscar", "C: Ceecee and Dwight", "D: Cecelia and Phillip"],
-    correct: "D: Cecelia and Phillip",
+    choices: ["Peepee and George", "Kelly and Oscar", "Ceecee and Dwight", "Cecelia and Phillip"],
+    answer: "Cecelia and Phillip",
   },
   {
     title: "Which of Angela's cats were in the office when Dwight started the fire?",
-    choices: ["A: Ember", "B: Sprinkles", "C: Bandit", "D: Lumpy"],
-    correct: "C: Bandit",
+    choices: ["Ember", "Sprinkles", "Bandit", "Lumpy"],
+    answer: "Bandit",
   },
   {
     title: "What band was Creed Bratton in?",
-    choices: ["A: The Grateful Dead", "B: Scrantonicity", "C: Electric City", "D: The Grass Roots"],
-    correct: "D: The Grass Roots",
+    choices: ["The Grateful Dead", "Scrantonicity", "Electric City", "The Grass Roots"],
+    answer: "The Grass Roots",
   },
 ];
 
@@ -72,8 +72,7 @@ function start() {
   var startQuiz = document.getElementById('start-quiz');
   startQuiz.setAttribute('class', 'hide');
   questionEl.removeAttribute('class');
-  timer = setInterval(countDown, 1000);
-  // displayTime.textContent = time;
+  timer = setInterval(1000);
   showQ();
 }
 
@@ -94,20 +93,14 @@ function showQ() {
   }
 }
 
-
+// function for right/wrong
 function questionSetup(event) {
   var buttonEl = event.target;
-  if (buttonEl.value !== questions [currentQIndex].answer) {
-
+  if (buttonEl.value !== questions.answer) {
     feedbackEl.textContent = 'False';
   } else {
     feedbackEl.textContent = 'Thats What She Said';
   }
-
-  feedbackEl. setAttribute('class', 'feedback');
-  setTimeout(function () {
-    feedbackEl.setAttribute('class', 'feedback hide'); 
-  }, 1000);
   currentQIndex++;
   if (currentQIndex === questions.length) {
     endQuiz();
@@ -119,29 +112,30 @@ function questionSetup(event) {
 // end quiz function
 function endQuiz() {
   clearInterval(timer);
-  var endGame = document.getElementById('end-screen');
+  var endGame = document.getElementById('end-quiz');
   endGame.removeAttribute('class');
-  var finalScore = document.getElementById('final-score');
+  var finalScore = document.getElementById('score');
   finalScore.textContent = time;
   questionEl.setAttribute('class', 'hide');
 }
 
-// timer countdown function
-function countDown() {
-  time--;
-  // displayTime.textContent = time;
-  if (time = 0) {
-    endQuiz();
-  }
-}
-
 // Save score
 function saveScore () {
-
+  var initials = initialsEl.value;
+  if (initials !== "") {
+    var highscore = JSON.parse(window.localStorage.getItem('highscores')) || [];
+    var newHS = { 
+      score: time,
+      initials: initials,
+    };
+    highscore.push(newHS);
+    window.localStorage.setItem('highscores', JSON.stringify(highscore));
+    window.location.href ='scores.html';
 }
-
+}
 // start button
 startButton.onclick = start;
 // answers button
 choicesEl.onclick = questionSetup;
 // initials button
+submitButton.onclick = saveScore;
